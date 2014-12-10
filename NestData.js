@@ -54,7 +54,6 @@ function getData() {
   var wxresult=JSON.parse(wxrequest.getContentText());
   
   var outside_temp = (wxresult["main"]["temp"] - 273);
-  var outside_tempf  = (("outside_temp"]*9)/5)+32;
  
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheets()[0];
