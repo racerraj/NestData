@@ -18,7 +18,7 @@ function performLogin(email, password) {
 }
 
 function getData() {
-  var login_auth = performLogin('<YOUR NEST USERNAME>','<YOUR NEST PASSWORD>');
+  var login_auth = performLogin('<YOUR EMAIL ADDRESS>','<YOUR NEST PASSWORD>');
              
   var headers = {
     "Authorization" : 'Basic '+login_auth['access_token'],
@@ -50,11 +50,11 @@ function getData() {
   Logger.log("Current Temp: "+current_temp+", Target Temp: "+ target_temp +", Humidity: "+ humidity*100 + "%" );
   var time = new Date();
  
-  var wxrequest=UrlFetchApp.fetch('http://api.openweathermap.org/data/2.5/weather?q=<YOUR ZIP CODE>');
+  var wxrequest=UrlFetchApp.fetch('http://api.openweathermap.org/data/2.5/weather?q=<YOUR POSTAL CODE>');
   var wxresult=JSON.parse(wxrequest.getContentText());
   
-  var outside_temp = (wxresult["main"]["temp"] - 273);
- 
+  var outside_temp = ((wxresult["main"]["temp"] - 273.15)*1.8000)+32;
+   
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheets()[0];
 
